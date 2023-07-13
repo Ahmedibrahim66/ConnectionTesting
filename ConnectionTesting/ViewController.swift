@@ -37,7 +37,6 @@ class ViewController: UIViewController {
                                change: [NSKeyValueChangeKey : Any]?,
                                context: UnsafeMutableRawPointer?) {
         if keyPath == "date" {
-            // Update the label here
             let newValue = UserDefaults.standard.string(forKey: "date")
             dateLabel.text = newValue
         }

@@ -50,7 +50,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         print("Schdule app refresh function started")
 
         let request = BGProcessingTaskRequest(identifier: "com.refresh.me")
-        request.earliestBeginDate = Date(timeIntervalSinceNow: 1)
+        request.earliestBeginDate = Date(timeIntervalSinceNow: 60)
         
         do {
             try BGTaskScheduler.shared.submit(request)
