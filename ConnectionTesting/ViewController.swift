@@ -15,10 +15,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var timesLabel: UILabel!
     
-    var count = 0
-    var time = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         UserDefaults.standard.addObserver(self, forKeyPath: "date", options: .new, context: nil)

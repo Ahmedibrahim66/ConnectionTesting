@@ -46,17 +46,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         scheduleAppRefresh()
     }
     
-    func scheduleAppRefresh(){
-        print("Schdule app refresh function started")
-
-        let request = BGProcessingTaskRequest(identifier: "com.refresh.me")
+    func scheduleAppRefresh() {
+        let request = BGAppRefreshTaskRequest(identifier: "com.refresh.me")
+        // Fetch no earlier than 15 minutes from now.
         request.earliestBeginDate = Date(timeIntervalSinceNow: 60)
         
         do {
             try BGTaskScheduler.shared.submit(request)
-            print("Submitted")
         } catch {
-            print("Could not schedule app refresh \(error)")
+            print("Could not schedule app refresh: \(error)")
         }
     }
 
