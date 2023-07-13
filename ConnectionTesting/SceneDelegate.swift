@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import BackgroundTasks
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -42,9 +43,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
-        // Called as the scene transitions from the foreground to the background.
-        // Use this method to save data, release shared resources, and store enough scene-specific state information
-        // to restore the scene back to its current state.
+        scheduleAppRefresh()
+    }
+    
+    func scheduleAppRefresh(){
+        print("Schdule app refresh function started")
+
+        let request = BGProcessingTaskRequest(identifier: "com.refresh.me")
+        request.earliestBeginDate = Date(timeIntervalSinceNow: 1)
+        
+        do {
+            try BGTaskScheduler.shared.submit(request)
+            print("Submitted")
+        } catch {
+            print("Could not schedule app refresh \(error)")
+        }
     }
 
 
